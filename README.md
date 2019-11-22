@@ -5,7 +5,8 @@
 1. `$ git clone https://github.com/lunit-io/mmg-nia`  
 2. `$ pip install -r requirements.txt` 
 3. `$ cd data_preprocessing` and do data-preprocessing [here](https://github.com/lunit-io/mmg-model-nia/tree/master/data_preprocessing)
-4. To train and test 5-fold cross validation, use `$ sh test.sh 0 data_preprocessing/db/shuffled_db.pkl /lunit/data/mmg/mg_nia`  
+4. To train and test 5-fold cross validation, use `$ sh test.sh $GPU_ID $PICKLE_PATH $DATA_ROOT` \
+e.g. `$ sh test.sh 0 data_preprocessing/db/shuffled_db.pkl /data/mmg/mg_nia`  
 5. `$ cat resnet34-5fold-result`  
 ```  
 compressed
