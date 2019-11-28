@@ -24,7 +24,7 @@ Note: this might take several hours
 
 2. To gather informations,
 `$ python generate_pickle.py --root_dir $DATA_ROOT --anno_dir $ANNOTATION_ROOT --fast_build`
-where $ANNOTATION_ROOT is directory that contains annotated json files, e.g. $DATA_ROOT/annotation_result_1st/__results/dst_json/20190930172251_KST
+where $ANNOTATION_ROOT is directory that contains annotated json files, e.g. $DATA_ROOT/annotation_result_1st/__results/dst_json/20190930172251_KST/success
 
 Note: fast_build options is available only if png files are generated in advance.
 

@@ -27,14 +27,16 @@ def _get_data_from_pickle(pickle_path, total_fold_number, target_fold_number, im
     for i, (k, v) in enumerate(meta_data.items()):
         case_data = []
         for view_type in ['LMLO', 'LCC', 'RMLO', 'RCC']:
-            case_data.append({
+            d = {
                 'case_id': k,
                 'case_label': v['case_label'],
-                'compressed_image_path': os.path.join(image_prefix_path, v[view_type]['compressed_image']),
-                'uncompressed_image_path': os.path.join(image_prefix_path, v[view_type]['uncompressed_image']),
                 'image_size': v[view_type]['image_size'],
                 'lesions': v[view_type]['lesions']
-            })
+            }
+            image_keys = [k for k in v[view_type].keys() if '_image' in k]
+            for imkey in image_keys:
+                d['{}_path'.format(imkey)] = os.path.join(image_prefix_path, v[view_type][imkey])
+            case_data.append(d)
 
         if i % total_fold_number + 1 == target_fold_number:
             val_data.extend(case_data)
@@ -63,7 +65,7 @@ def get_loader(args):
         args.data, args.fold_number, args.current_fold_number, args.prefix_image_dir_path
     )
 
-    train_dataset = ImageDataset(train_data, args, use_compressed=False)
+    train_dataset = ImageDataset(train_data, args, use_compressed=args.use_compressed_train)
     val_dataset = EvalImageDataset(val_data, args, use_compressed=args.use_compressed)
 
     train_loader = torch.utils.data.DataLoader(
