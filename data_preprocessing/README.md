@@ -43,7 +43,7 @@ mkdir dcm
 
 ## Data tree structure
 ```
-$ROOT_DATA
+$DATA_ROOT
 └── dcm
     ├── 1
     │   ├── LCC.dcm
