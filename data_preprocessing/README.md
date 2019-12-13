@@ -4,13 +4,11 @@
 
 We assume the data is downloaded in $DATA_ROOT
 
-Rearrange data by moving Compressed & Uncompressed data by following command,
+Store data in $DATA_ROOT/dcm by following command,
 
 ```
 cd $DATA_ROOT
 mkdir dcm
-mv Uncompressed/ dcm/.
-mv Compressed/ dcm/.
 ```
 
 ## Data preprocess
