@@ -1,6 +1,4 @@
 
-# mmg-nia Repository for NIA project    
-    
 ## How to use it 
 1. `$ git clone https://github.com/lunit-io/mmg-nia`  
 2. `$ pip install -r requirements.txt` 
