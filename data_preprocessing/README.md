@@ -1,6 +1,6 @@
 # Prepare dataset
 
-## Install library: GDCM
+## Library installation: GDCM
 ```
 apt-get update
 
@@ -30,7 +30,7 @@ cd -
 rm -rf gdcm-src gdcm-build gdcm-2.8.9.tar.gz
 ```
 
-## Download dataset
+## Dataset
 
 We assume the data is downloaded in $DATA_ROOT
 
@@ -41,7 +41,8 @@ cd $DATA_ROOT
 mkdir dcm
 ```
 
-## Data tree structure
+Data structure
+
 ```
 $DATA_ROOT
 └── dcm
@@ -70,7 +71,7 @@ $DATA_ROOT
 ```
  
 
-## Data preprocess
+## Data preprocessing
 To train our model, we have to first convert dicom files to image files.
 Then, the information about the data(such as the path to image file or annotations) is gathered.
 
