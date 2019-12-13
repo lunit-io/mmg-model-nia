@@ -42,6 +42,7 @@ mkdir dcm
 ```
 
 ## Data tree structure
+```
 $ROOT_DATA
 └── dcm
     ├── 1
@@ -66,7 +67,7 @@ $DATA_ROOT
     │   │   |   ├── Success     
     │   │   │   |   ├── Type_id.json (e.g. Cancer_00367.json)   
 ...         
-
+```
  
 
 ## Data preprocess
