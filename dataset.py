@@ -37,6 +37,12 @@ class ImageDataset(Dataset):
         self._use_compressed = use_compressed
         self.stats = {'mean': 0., 'std': 1.}
 
+        assert len(self._data) > 0, "Data read from pickle failed or too few data"
+        assert (not self._use_compressed) or 'compressed_image_path' in self._data[0].keys(), \
+                "Dataset requires compressed images, but pickle doesn't have them."
+        assert (self._use_compressed) or 'uncompressed_image_path' in self._data[0].keys(), \
+                "Dataset requires uncompressed images, but pickle doesn't have them."
+
     def __len__(self):
         return len(self._data)
 

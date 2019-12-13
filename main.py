@@ -63,6 +63,8 @@ parser.add_argument('--fold-number', default=5, type=int, metavar='N',
                     help='The fold number in cross validation')
 parser.add_argument('--current-fold-number', default=1, type=int, metavar='N',
                     help='Current fold number in cross validation')
+parser.add_argument('--use-compressed-train', action='store_true',
+                    help='use compressed image in train time')
 parser.add_argument('--use-compressed', action='store_true',
                     help='use compressed image in evaluation time')
 parser.add_argument('--prefix-image-dir-path', default='', type=str, metavar='PATH',

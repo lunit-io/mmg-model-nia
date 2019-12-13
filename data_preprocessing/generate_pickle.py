@@ -18,7 +18,7 @@ parser.add_argument('--fast_build', default=False, action='store_true',
 args, _ = parser.parse_known_args()
 
 root_dir = args.root_dir
-compression_type = ['Uncompressed', 'Compressed']
+compression_type = ['Uncompressed'] # only Uncompressed and Compressed is possible
 categories = ['Cancer', 'Benign', 'Normal', 'Benign_additional']
 views = ['LCC', 'LMLO', 'RCC', 'RMLO']
 
@@ -65,6 +65,9 @@ def read_annotation(case_key, view, image_size):
                 })
     return lesions
 
+def _comp_type2key(comp_type):
+    return '{}_image'.format(comp_type.lower())
+
 db = {}
 for category in categories:
     case_names = os.listdir(os.path.join(root_dir, 'dcm', compression_type[0], category))
@@ -75,20 +78,22 @@ for category in categories:
         # Make LMLO, LCC, RMLO, RCC information
         for view in views:
             view_info = {}
-            view_info['uncompressed_image'] = os.path.join('png', compression_type[0], category, \
-                                                                case_name, view + '.png')
-            view_info['compressed_image'] = os.path.join('png', compression_type[1], category, \
-                                                                case_name, view + '.png')
-            uncompressed_dcm = os.path.join(root_dir, 'dcm', compression_type[0], category, \
-                                            case_name, view + '.dcm')
+            for comp_type in compression_type:
+                comp_key = _comp_type2key(comp_type)
+                view_info[comp_key] = os.path.join('png', comp_type, category, \
+                                                case_name, view + '.png')
 
             if args.fast_build:
                 # use pre-extracted png
-                im = Image.open(os.path.join(root_dir, view_info['uncompressed_image']))
+                comp_type = compression_type[0]
+                comp_key = _comp_type2key(comp_type)
+                im = Image.open(os.path.join(root_dir, view_info[comp_key]))
                 width, height = im.size
                 image_size = height, width
             else:                    
-                with dicom.dcmread(uncompressed_dcm) as ud:
+                ref_dcm = os.path.join(root_dir, 'dcm', compression_type[0], category, \
+                                                case_name, view + '.dcm')
+                with dicom.dcmread(ref_dcm) as ud:
                     image_size = ud.pixel_array.shape # height, width
             lesions = read_annotation(case_key, view, image_size)
             if lesions is None:
