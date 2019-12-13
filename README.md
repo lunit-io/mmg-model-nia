@@ -25,7 +25,6 @@ e.g. `$ sh test.sh 0 data_preprocessing/db/shuffled_db.pkl /data/mmg/mg_nia`
 ```  
 6. `$ cat densenet121-5fold-result`  
 ```  
-uncompressed
    threshold : 0.1
          calculated accuracy is 0.8379339405852875
          calculated specificity is 0.8391845548624011
