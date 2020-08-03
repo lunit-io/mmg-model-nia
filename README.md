@@ -1,29 +1,13 @@
 
-# mmg-nia Repository for NIA project    
-    
 ## How to use it 
 1. `$ git clone https://github.com/lunit-io/mmg-nia`  
 2. `$ pip install -r requirements.txt` 
 3. `$ cd data_preprocessing` and do data-preprocessing [here](https://github.com/lunit-io/mmg-model-nia/tree/master/data_preprocessing)
 4. To train and test 5-fold cross validation, use `$ sh test.sh $GPU_ID $PICKLE_PATH $DATA_ROOT` \
 e.g. `$ sh test.sh 0 data_preprocessing/db/shuffled_db.pkl /data/mmg/mg_nia`  
+    - If you want to use many GPUs, input multiple numbers: `sh test.sh 0,1,2,3, ...`
 5. `$ cat resnet34-5fold-result`  
 ```  
-compressed
-   threshold : 0.1
-         calculated accuracy is 0.8150886790885683
-         calculated specificity is 0.8227048930437848
-         calculated sensitivity is 0.7889675985264972
-   threshold : 0.15
-         calculated accuracy is 0.8451890694648247
-         calculated specificity is 0.878533964063642
-         calculated sensitivity is 0.7308764166673534
-   threshold : 0.2
-         calculated accuracy is 0.8608703452476536
-         calculated specificity is 0.9128091136592129
-         calculated sensitivity is 0.6827785378337696
-   calculated auc is 0.8896701982655968
-uncompressed
    threshold : 0.1
          calculated accuracy is 0.8144577092389047
          calculated specificity is 0.8112627121478205
@@ -40,21 +24,6 @@ uncompressed
 ```  
 6. `$ cat densenet121-5fold-result`  
 ```  
-compressed
-   threshold : 0.1
-         calculated accuracy is 0.8405651319250256
-         calculated specificity is 0.8526687249469763
-         calculated sensitivity is 0.7984347172444817
-   threshold : 0.15
-         calculated accuracy is 0.8595072953293281
-         calculated specificity is 0.888602910574434
-         calculated sensitivity is 0.7593899157536472
-   threshold : 0.2
-         calculated accuracy is 0.8708727262659541
-         calculated specificity is 0.9096908783863396
-         calculated sensitivity is 0.7374108776754932
-   calculated auc is 0.9031778432556026
-uncompressed
    threshold : 0.1
          calculated accuracy is 0.8379339405852875
          calculated specificity is 0.8391845548624011
